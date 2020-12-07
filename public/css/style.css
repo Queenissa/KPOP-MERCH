@@ -1,0 +1,42 @@
+/* header */
+nav{
+    background: linear-gradient(to left, #ffccff 0%, #ff66cc 100%);
+    /* background-color:hotpink; */
+}
+
+/* logo */
+.logo{
+margin-left: 15px;
+color: #b3005c;
+font-family: 'Norican';
+font-size:35px;
+font-weight: bold;
+}   
+
+.logo:hover{
+    text-decoration: none;
+    color: black;
+    transition-duration: 0.8s;
+}
+
+.nav-link{
+    color: black;
+}
+
+.nav-link:hover{
+    color: #b3005c;
+    transition-duration: 0.8s;
+}
+
+
+
+
+
+/* footer */
+footer{
+    margin-top: 70px;
+    background-color:lightgray;
+    padding: 20px;
+    width: 100%;
+}
+
