@@ -1,6 +1,6 @@
 <%- include('./../partials/adminHeader') -%>
 <div class="container">
-    <h1 class="text-center text-secondary mt-3">Order Details</h1>
+    <h1 class="text-center text-secondary mt-3 statusTitle">Order Details</h1>
     <div class="row mt-4">
         <% products.forEach(product => { %>
         <div class="col-md-4 mt-3" id="<%= JSON.stringify(product) %> ">
@@ -9,8 +9,10 @@
                 <h3>
                     <%= product.title %>
                 </h3>
-                <span class="user"><b>customer: <%= product.userId.username %></b></span>
-                <span><b>quantity: <%= product.quantity %></b></span>
+                <!-- <span class="user"><b>customer: <%#= product.userId.username %></b></span> -->
+                <span class="font-weight-bold">Description: <%= product.productId.description %> </span>
+                <span class="font-weight-bold">Price: <%= product.productId.price %> </span>
+                <span class="font-weight-bold">Quantity: <%= product.quantity %> </span>
                 <button class="btn btn-info deliver" id="<%= product._id %> ">Deliver</button>
             </div>
         </div>

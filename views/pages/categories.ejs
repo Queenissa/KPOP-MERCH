@@ -23,7 +23,13 @@
       <li class="my-2 mx-3">
         <div class="sp-card-2">
           <div class="overlap">
-            <a href="#" title="Add To Cart" id="<%= product._id%>" class="addTocart">Add To Cart</a>
+            
+            <% if (user.user.role == "admin") { %>
+              <a href="/cart/delete/:cartId" title="Update" id="<%= product._id%>" class="update">Update</a>
+              <a href="/delete-product/:productId" title="Delete" id="<%= product._id%>" class="delete">Delete</a>
+            <% } else { %>
+              <a href="#" title="Add To Cart" id="<%= product._id%>" class="addTocart">Add To Cart</a>
+            <% } %>
           </div>
           <div class="card-image">
 

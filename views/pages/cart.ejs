@@ -17,7 +17,9 @@
                     <h3>
                         <%= product.title %> 
                     </h3>
-                    <span>Quantity:  <%= product.quantity %> </span>
+                    <span class="font-weight-bold" >Description: <%= product.productId.description %>  </span>
+                    <span class="font-weight-bold">Price: <%= product.productId.price %>  </span>
+                    <span class="font-weight-bold">Quantity:  <%= product.quantity %> </span>
                     <button class="btn btn-info checkout" id="<%= product._id %>">Checkout</button>
                 </div>
             </div>
@@ -39,7 +41,10 @@
                         <h3>
                             <%= product.title %> 
                         </h3>
-                        <span class="">Quantity:  <%= product.quantity %> </span>
+                        <span class="font-weight-bold" >Description: <%= product.productId.description %>  </span>
+                        <span class="font-weight-bold">Price: <%= product.productId.price %>  </span>
+                        <span class="font-weight-bold">Quantity:  <%= product.quantity %> </span>
+                        <button class="btn btn-danger checkout " disabled id="<%= product._id %>">Pending</button>
                     </div>
                 </div>
             <% }) %>
@@ -59,8 +64,10 @@
                         <h3>
                             <%= product.title %> 
                         </h3>
-                        <span>Quantity:  <%= product.quantity %> </span>
-                       
+                        <span class="font-weight-bold" >Description: <%= product.productId.description %>  </span>
+                        <span class="font-weight-bold">Price: <%= product.productId.price %>  </span>
+                        <span class="font-weight-bold">Quantity:  <%= product.quantity %> </span>
+                        <button class="btn btn-success checkout " disabled id="<%= product._id %>">Completed</button>
                     </div>
                 </div>
             <% }) %>

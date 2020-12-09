@@ -22,6 +22,8 @@ router.get('/welcome/:userId/:role', productController.getIndexAndproducts);
 //get logout
 router.get('/logout', AUTH.removeToken, productController.getIndexAndproducts);
 
+//delete product
+router.delete('/delete-product/:productId', AUTH.authorizedData, AUTH.isAdmin, productController.deleteProduct)
 
 //get sales 
 router.get('/sales', AUTH.authorizedData, AUTH.isAdmin, productController.getSales);

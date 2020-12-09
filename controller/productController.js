@@ -59,5 +59,16 @@ module.exports = {
     //get sales 
     getSales: (req, res)=> {
         res.render('pages/sales');
+    },
+    
+    //delete product
+    deleteProduct: (req, res) => {
+        const productId = req.params.productId;
+        Product.findByIdAndDelete(productId, (error, product) => {
+            if (error) return res.render("error", { message: "Cannot delete product!" })
+
+            //temporary
+            res.redirect('categories', { title: "Categories" });
+        })
     }
 }
