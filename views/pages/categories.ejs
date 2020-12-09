@@ -2,51 +2,40 @@
 <link rel="stylesheet" href="/public/css/sample.css">
 <title><%= title %> </title>
 
-
-<% if (user.user.role == "admin") { %>
-<%- include('./../partials/adminHeader') -%>
-<% } else {%>
-<%- include('./../partials/userHeader') -%>
+<%if (user == 'no user found') { %>
+  <%- include('./../partials/header') -%>
+ <% } else { %>
+  <% if (user.user.role == "admin") { %>
+    <%- include('./../partials/adminHeader') -%>
+  <% } else {%>
+    <%- include('./../partials/userHeader') -%>
+  <% } %>
 <% } %>
-
 <body>
   <div class="card-category-4">
     <span class="category-name"></span> <br /><br />
     <ul>
-
       <% if (products.length <= 0) { %>
-      <h1>No products yet!</h1>
+      <h1>No Products Yet!</h1>
       <% } else {%>
       <% products.forEach(product => { %>
-      <li class="mt-2">
+        
+      <li class="my-2 mx-3">
         <div class="sp-card-2">
           <div class="overlap">
-            <a href="#" title="Add To Cart">Add To Cart</a>
+            <a href="#" title="Add To Cart" id="<%= product._id%>" class="addTocart">Add To Cart</a>
           </div>
           <div class="card-image">
-            <img src="/public/images/bpnecklace.PNG" />
+
+            <img src="<%= product.imageUrl %>" alt="product image"/>
           </div>
+          <input type="hidden" value="" class="<%=JSON.stringify(product)%>" name="<%= product._id %>">
           <div class="card-content">
             <span class="card-title"><%= product.title %> </span>
-            <span class="price-start">$<%= product.price %> </span>
+            <span class="price-start">₱<%= product.price %>.00</span>
             <div class="card-caption">
+              <span><b>Description:</b> <br> </span>
              <%= product.description %>
-              <span style="font-size: 10px">Image by <a
-                  href="https://pixabay.com/users/nattyjeff-1836617/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1886008"
-                  style="text-decoration: none;color:#717171">jeff burroughs</a> from <a
-                  href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=1886008"
-                  style="text-decoration: none;color:#717171">Pixabay</a></span>
-            </div>
-            <div class="cloth-size">
-              <span><b>Sizes:</b> </span>
-              <span><b>S, M, L, XL</b></span>
-            </div>
-            <div class="cloth-colors">
-              <span><b>Colors:</b> </span>
-              <span class="color1"></span>
-              <span class="color2"></span>
-              <span class="color3"></span>
-              <span class="color4"></span>
             </div>
           </div>
         </div>
@@ -54,8 +43,9 @@
       <% }) %>
       <% } %>
 
-    </ul>
+    </ul> 
   </div>
-
+  <script src="/public/js/userFunctions.js"></script>
+  <script src="/public/js/main.js"></script>
   <%- include('./../partials/footer') -%>
 </body>

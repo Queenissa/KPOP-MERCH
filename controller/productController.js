@@ -23,12 +23,20 @@ module.exports = {
     //get product by categories
     getProductsByCategory: (req, res)=> {
         const category = req.params.category;
-     
         Product.find({category: category}, (error, products)=> {
             if(error) return res.render("error",{title: "Error", message: "Retrieve products "+category+" failed!"});
 
-            res.render("pages/categories", {title: `Categories| ${category}`, products: products, user: req.user});
+            res.render("pages/categories", {title: `Categories| ${category}`, products: products, user: req.user || "no user found"});
         });
+    },
+
+    //get product by id
+    getProductById: (req, res)=> {
+        const productId = req.params.productId;
+        Product.findById(productId,(error,product)=>{
+            if (error)return res.render("error",{title:"Error",message:"Retrieve product failed"});
+            res.json({product: product});
+        })
     },
 
     //get add product page
@@ -39,12 +47,17 @@ module.exports = {
     //add product 
     addProduct: (req, res)=> {
         const newProduct = req.body;
-
         const productTobeAdd = new Product(newProduct);
         //save the product
         productTobeAdd.save((error, newlyAddedProduct)=> {
             if(error) return res.status(400).json({title: "Error", message: "Failed to add product!"});
             res.json({url: `/categories/${newlyAddedProduct.category}`});
         });
+    },
+
+
+    //get sales 
+    getSales: (req, res)=> {
+        res.render('pages/sales');
     }
 }

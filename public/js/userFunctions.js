@@ -11,7 +11,7 @@ function registerUser() {
         email: $("#emailSignup").val(),
         password: $("#passwordSignup").val()
     };
-   
+
     $.ajax({
         type: "post",
         url: "/user/add",
@@ -36,26 +36,26 @@ function loginUser() {
 
     let data = {
         email: $("#emailLogin").val(),
-        password: $("passwordLogin").val()
+        password: $("#passwordLogin").val()
     }
-
+    console.log(data);
     $.ajax({
         type: "post",
         url: "/user/login",
         data: data,
         success: (result) => {
             console.log(result.user);
-            window.location.href = "/welcome/" + result.user._id+"/"+result.user.role;
+            window.location.href = "/welcome/" + result.user._id + "/" + result.user.role;
         },
         error: (error) => {
-            console.log(error);
+            Swal.fire(error.responseJSON.message, "", "error");
         }
     })
 }
 
 //add product
 function addProduct() {
-    let ids=[
+    let ids = [
         "title",
         "imageUrl",
         "price",
@@ -70,13 +70,14 @@ function addProduct() {
 
     let data = {
         title: $("#title").val(),
-        imageurl: $("#imageurl").val(),
+        imageUrl: $("#imageUrl").val(),
         category: $("#category").val(),
         price: $("#price").val(),
         stock: $("#stock").val(),
         description: $("#description").val()
     }
-    
+
+
     $.ajax({
         type: "post",
         url: "/add-product",
@@ -89,4 +90,69 @@ function addProduct() {
             console.log(error);
         }
     });
+}
+
+
+//add to cart
+function addToCart(data) {
+        $.ajax({
+            type: "post",
+            url: "/cart/add",
+            data: data,
+            success: (result) => {
+                
+            },
+            error: (error) => { 
+                console.log(error);
+            }
+        })
+
+}
+//update cart status
+function updateCartStatus(cartId) {
+    $.ajax({
+        type: "put",
+        url: "/cart/update/" + cartId,
+        data: { status: "checkout" },
+        success: (result) => {
+            console.log(result);
+            Swal.fire({
+                title: 'Successfully checkout!',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'ok'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = window.location.href;
+                }
+            })
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    })
+}
+
+//admin delivered the product
+function deliver(cartId){
+    $.ajax({
+        type: "put",
+        url: '/cart/update/'+cartId,
+        data: {status: "delivered"},
+        success: (result)=> {
+            Swal.fire({
+                title: 'Successfully delivered!',
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'ok'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = window.location.href;
+                }
+            })
+        },
+        error: (error) => {
+            console.log(error);
+        }
+    })
 }

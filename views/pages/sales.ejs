@@ -1,0 +1,380 @@
+
+    <%- include('./../partials/adminHeader') -%>
+    <div> <!-- NestedPie Graph -->
+        <div id="chart-container"></div>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+        <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+        <script>
+          $(document).ready(() => {
+            //this code is responsible for the charts
+            const dataSource = {
+  chart: {
+    caption: "KPop Merch Sales Report",
+    subcaption: "2012-2016",
+    xaxisname: "Years",
+    yaxisname: "Total number of apps in store",
+    formatnumberscale: "1",
+    plottooltext:
+      "<b>$dataValue</b> apps were available on <b>$seriesName</b> in $label",
+    theme: "fusion",
+    drawcrossline: "1"
+  },
+  categories: [
+    {
+      category: [
+        {
+          label: "2012"
+        },
+        {
+          label: "2013"
+        },
+        {
+          label: "2014"
+        },
+        {
+          label: "2015"
+        },
+        {
+          label: "2016"
+        }
+      ]
+    }
+  ],
+  dataset: [
+    {
+      seriesname: "iOS App Store",
+      data: [
+        {
+          value: "125000"
+        },
+        {
+          value: "300000"
+        },
+        {
+          value: "480000"
+        },
+        {
+          value: "800000"
+        },
+        {
+          value: "1100000"
+        }
+      ]
+    },
+    {
+      seriesname: "Google Play Store",
+      data: [
+        {
+          value: "70000"
+        },
+        {
+          value: "150000"
+        },
+        {
+          value: "350000"
+        },
+        {
+          value: "600000"
+        },
+        {
+          value: "1400000"
+        }
+      ]
+    },
+    {
+      seriesname: "Amazon AppStore",
+      data: [
+        {
+          value: "10000"
+        },
+        {
+          value: "100000"
+        },
+        {
+          value: "300000"
+        },
+        {
+          value: "600000"
+        },
+        {
+          value: "900000"
+        }
+      ]
+    }
+  ]
+};
+
+FusionCharts.ready(function() {
+  var myChart = new FusionCharts({
+    type: "mscolumn2d",
+    renderAt: "chart-container",
+    width: "100%",
+    height: "100%",
+    dataFormat: "json",
+    dataSource
+  }).render();
+});
+});
+</script>
+<!-- Graph -->
+<center>
+    <div id="chart-container"></div>
+  </center>
+  </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+  <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+  <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+  <script src="/static/js/main.js"></script>
+  <script>
+  $(document).ready(() => {
+  
+  //this code is responsible for the charts
+  const dataSource = {
+    chart: {
+      caption: "Sales by Product Category",
+      subcaption: "Last Quarter",
+      showplotborder: "1",
+      plotfillalpha: "60",
+      hoverfillcolor: "#CCCCCC",
+      numberprefix: "$",
+      plottooltext:
+        "Sales of <b>$label</b> was <b>$$valueK</b>, which was $percentValue of parent category",
+      theme: "fusion"
+    },
+    category: [
+      {
+        label: "Products",
+        tooltext: "Please hover over a sub-category to see details",
+        color: "#ffffff",
+        value: "150",
+        category: [
+          {
+            label: "Blackpink Merch",
+            color: "#FF69B4",
+            value: "55.5",
+            category: [
+              {
+                label: "T-Shirt",
+                color: "#FF69B4",
+                value: "11.1"
+              },
+              {
+                label: "Lightstick",
+                color: "#FF69B4",
+                value: "9.99"
+              },
+              {
+                label: "Sneaker",
+                color: "#FF69B4",
+                value: "6.66"
+              }
+            ]
+          },
+          {
+            label: "BTS Merch",
+            color: "#800080",
+            value: "42",
+            category: [
+              {
+                label: "T-Shirts",
+                color: "#800080",
+                value: "10.08"
+              },
+              {
+                label: "Lightstick",
+                color: "#800080",
+                value: "18.9"
+              },
+              {
+                label: "Backpack",
+                color: "#800080",
+                value: "6.3"
+              },
+              {
+                label: "Sneaker",
+                color: "#800080",
+                value: "6.72"
+              },
+              {
+                label: "Tumbler",
+                color: "#800080",
+                value: "6.66"
+              },
+              {
+                label: "Pillow",
+                color: "#800080",
+                value: "6.66"
+              }
+            ]
+          },
+          {
+            label: "Twice Merch",
+            color: "#00BFFF",
+            value: "22.5",
+            category: [
+              {
+                label: "Hoodie",
+                color: "#00BFFF",
+                value: "9.45"
+              },
+              {
+                label: "Lightstick",
+                color: "#00BFFF",
+                value: "6.3"
+              },
+              {
+                label: "Album",
+                color: "#00BFFF",
+                value: "6.75"
+              },
+              {
+                label: "Cap",
+                color: "#00BFFF",
+                value: "6.66"
+              },
+              {
+                label: "T-Shirt",
+                color: "#00BFFF",
+                value: "6.66"
+              },
+              {
+                label: "Wristband",
+                color: "#00BFFF",
+                value: "6.66"
+              }
+            ]
+          },
+          {
+            label: "EXO Merch",
+            color: "#00FA9A",
+            value: "30",
+            category: [
+              {
+                label: "Lightstick",
+                color: "#00FA9A",
+                value: "8.1"
+              },
+              {
+                label: "Album",
+                color: "#00FA9A",
+                value: "10.5"
+              },
+              {
+                label: "Necklace",
+                color: "#00FA9A",
+                value: "11.4"
+              },
+              {
+                label: "Notebook",
+                color: "#00FA9A",
+                value: "6.66"
+              },
+              {
+                label: "Notebook",
+                color: "#00FA9A",
+                value: "6.66"
+              },
+              {
+                label: "Notebook",
+                color: "#00FA9A",
+                value: "6.66"
+              }
+            ]
+          },
+          {
+            label: "RedVelvet Merch",
+            color: "#DC143C",
+            value: "30",
+            category: [
+              {
+                label: "Lightstick",
+                color: "#DC143C",
+                value: "8.1"
+              },
+              {
+                label: "Wristband",
+                color: "#DC143C",
+                value: "10.5"
+              },
+              {
+                label: "Album",
+                color: "#DC143C",
+                value: "11.4"
+              },
+              {
+                label: "Lightstick",
+                color: "#DC143C",
+                value: "6.66"
+              },
+              {
+                label: "Notebook",
+                color: "#DC143C",
+                value: "6.66"
+              },
+              {
+                label: "Notebook",
+                color: "#DC143C",
+                value: "6.66"
+              }
+            ]
+          },
+          {
+            label: "Momoland Merch",
+            color: "#FFFF00",
+            value: "30",
+            category: [
+              {
+                label: "Laptops",
+                color: "#FFFF00",
+                value: "8.1"
+              },
+              {
+                label: "Televisions",
+                color: "#FFFF00",
+                value: "10.5"
+              },
+              {
+                label: "SmartPhones",
+                color: "#FFFF00",
+                value: "11.4"
+              },
+              {
+                label: "Notebook",
+                color: "#FFFF00",
+                value: "6.66"
+              },
+              {
+                label: "Notebook",
+                color: "#FFFF00",
+                value: "6.66"
+              },
+              {
+                label: "Notebook",
+                color: "#FFFF00",
+                value: "6.66"
+              }
+            ]
+          },
+        ]
+      }
+    ]
+  };
+  
+  FusionCharts.ready(function() {
+    var myChart = new FusionCharts({
+      type: "multilevelpie",
+      renderAt: "chart-container",
+      width: "100%",
+      height: "100%",
+      dataFormat: "json",
+      dataSource
+    }).render();
+  });
+  });
+    </script>
+</div>
+<%- include('./../partials/footer') -%>

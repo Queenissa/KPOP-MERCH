@@ -33,6 +33,18 @@ module.exports = {
             return res.redirect(`/welcome/${user._id}/${user.role}`);
         }
         next();
-    }
+    },
     
+    getUser: (req, res, next)=> {
+        const token = req.cookies.token;
+        req.user = undefined;
+        if(token){
+            jwt.verify(token, process.env.ACCESS_SECRET, (error, user)=> {
+                if(error) return res.statusCode(401);
+
+                req.user = user;    
+            })
+        }   
+        next(); 
+    }
 }

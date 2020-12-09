@@ -23,14 +23,14 @@ module.exports = {
         const password = req.body.password;
 
         User.findOne({ email: email }, (error, user) => {
-            if (error) return res.send("Email not found!");
-            bcrypt.compare(password, user.password, (match) => {
-                if (!match) return res.send("Password doesn't match!");
-
+            if(!user) return res.status(400).json({message:"Email not found!"});
+            if (error) return res.status(400).json({message:"Email not found!"});
+            bcrypt.compare(password, user.password, (error, result) => {
+                if (error) return res.status(400).json({message: "Password doesn't match!"});
                 const accessToken = jwt.sign({ user }, process.env.ACCESS_SECRET, { expiresIn: '12h' });
 
-                res.cookie("token", accessToken, { maxAge: 60000 * 60 * 12 });
                 console.log(user);
+                res.cookie("token", accessToken, { maxAge: 60000 * 60 * 12 });
                 res.json({ message: "Successfully login!", user: user});
             })
         })

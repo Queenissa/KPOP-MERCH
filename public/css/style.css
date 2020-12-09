@@ -28,8 +28,13 @@ font-weight: bold;
     transition-duration: 0.8s;
 }
 
+.card-image {
+    height: 200px;
+}
 
-
+.cancel {
+    margin-right: 10px;
+}
 
 
 /* footer */
@@ -40,3 +45,11 @@ footer{
     width: 100%;
 }
 
+.statusTitle{
+    font-family: 'Kavoon';
+    font-size: 35px;
+}
+.noProducts{
+    font-family: 'Acme';
+    font-size: 22px;
+}

@@ -1,3 +1,72 @@
+<link rel="stylesheet" href="/public/css/style.css">
 <%- include('./../partials/userHeader') -%>
-this is cart
+
+<body>
+    <div class="container text-center">
+        <br>
+        <br>
+        <h1 class="statusTitle">Orders</h1>
+        <div class="row text-center">
+            <% if (products.uncheckout.length <= 0) { %>
+                <h2 class="text-center noProducts">No Products yet!</h2>
+            <% } %> 
+            <% products.uncheckout.forEach(product => { %>
+            <div class="col-md-4 mt-3" id="<%= JSON.stringify(product) %> ">
+                <div class="card text-center p-2">
+                    <img class="card-image" src="<%= product.productId.imageUrl %>" alt="Product image">
+                    <h3>
+                        <%= product.title %> 
+                    </h3>
+                    <span>Quantity:  <%= product.quantity %> </span>
+                    <button class="btn btn-info checkout" id="<%= product._id %>">Checkout</button>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+        
+    </div>
+    <hr>
+    <div class="container text-center">
+        <h1 class="statusTitle">Pending Orders</h1>
+        <div class="row">
+            <% if (products.checkout.length <= 0) { %>
+                <h2 class="text-center noProducts">No Products yet!</h2>
+            <% } %> 
+            <% products.checkout.forEach(product => { %>
+                <div class="col-md-4 mt-3" id="<%= JSON.stringify(product) %> ">
+                    <div class="card text-center p-2">
+                        <img class="card-image" src="<%= product.productId.imageUrl %>" alt="Product image">
+                        <h3>
+                            <%= product.title %> 
+                        </h3>
+                        <span class="">Quantity:  <%= product.quantity %> </span>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    <hr>
+    <div class="container text-center">
+        <h1 class="statusTitle">Delivered Orders</h1>
+        <div class="row">
+            <% if (products.delivered.length <= 0) { %>
+                <h2 class="text-center noProducts">No Products yet!</h2>
+            <% } %> 
+            <% products.delivered.forEach(product => { %>
+                <div class="col-md-4 mt-3" id="<%= JSON.stringify(product) %> ">
+                    <div class="card text-center p-2">
+                        <img class="card-image" src="<%= product.productId.imageUrl %>" alt="Product image">
+                        <h3>
+                            <%= product.title %> 
+                        </h3>
+                        <span>Quantity:  <%= product.quantity %> </span>
+                       
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+    <script src="/public/js/main.js"></script>
+    <script src="/public/js/userFunctions.js"></script>
+</body>
 <%- include('./../partials/footer') -%>

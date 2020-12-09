@@ -1,0 +1,22 @@
+<%- include('./../partials/adminHeader') -%>
+<div class="container">
+    <h1 class="text-center text-secondary mt-3">Order Details</h1>
+    <div class="row mt-4">
+        <% products.forEach(product => { %>
+        <div class="col-md-4 mt-3" id="<%= JSON.stringify(product) %> ">
+            <div class="card text-center p-2">
+                <img class="card-image" src="<%= product.productId.imageUrl %>" alt="Product image">
+                <h3>
+                    <%= product.title %>
+                </h3>
+                <span class="user"><b>customer: <%= product.userId.username %></b></span>
+                <span><b>quantity: <%= product.quantity %></b></span>
+                <button class="btn btn-info deliver" id="<%= product._id %> ">Deliver</button>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+</div>
+<script src="/public/js/userFunctions.js"></script>
+<script src="/public/js/main.js"></script>
+<%- include('./../partials/footer') -%>
